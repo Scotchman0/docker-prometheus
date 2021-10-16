@@ -13,6 +13,7 @@ services:
     - cadvisor
   grafana:
     image: grafana/grafana
+    container_name: grafana_new
     ports:
     - 3000:3000
   cadvisor:
