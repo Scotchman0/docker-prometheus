@@ -8,3 +8,6 @@ Nailing down the services and directories and will replace all the paths with so
 Feel free to clone and use in your projects, I'm just tinkering with a better monitoring setup and hopefully this'll do what I want it to when I'm done with it.
 
 ~Scotchman0
+
+
+** Copy daemon.json to /etc/docker and then run: $ sudo systemctl restart docker to integrate.
