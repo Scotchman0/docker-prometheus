@@ -28,7 +28,7 @@ services:
 #    - /cgroup:/cgroup:ro #RHEL
     depends_on:
     - redis
-    userns:
+    user_namespace:
     - host #ubuntu
 #    privileged: true #rhel
   redis:
