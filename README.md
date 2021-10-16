@@ -11,3 +11,7 @@ Feel free to clone and use in your projects, I'm just tinkering with a better mo
 
 
 ** Copy daemon.json to /etc/docker and then run: $ sudo systemctl restart docker to integrate.
+
+To launch the stack, install docker-compose, then run: `$ docker-compose up` in the folder that owns this service
+
+See: https://docs.docker.com/config/daemon/prometheus/ for more information/usage guidance, this is just a version that also includes cadvisor and grafana in the build for ease of access.
