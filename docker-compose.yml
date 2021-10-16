@@ -11,10 +11,10 @@ services:
     - ./prometheus.yml:/home/wradmin/prometheus/prometheus.yml:ro
     depends_on:
     - cadvisor
-   grafana:
-   image: grafana/grafana
-   ports:
-   - 3000:3000
+  grafana:
+    image: grafana/grafana
+    ports:
+    - 3000:3000
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
