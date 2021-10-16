@@ -1,11 +1,10 @@
 #global config    
 global:
- scrape_interval: 15s 
- evaluation_interval: 15s 
+  scrape_interval: 15s 
+  evaluation_interval: 15s 
  # scrape_timeout is set to the global default (10s).
- 
-external_labels:
-  monitor: 'e3-monitor' #update depending on deployment node for reporting update
+  external_labels:
+    monitor: 'e3-monitor' #update depending on deployment node for reporting update
   
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
