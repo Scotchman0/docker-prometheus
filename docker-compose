@@ -34,9 +34,10 @@ services:
     - host #ubuntu
 #    privileged: true #rhel
 
-
   redis:
     image: redis:latest
     container_name: redis
     ports:
     - 6379:6379
+    command:
+    - --config.file=/home/wradmin/prometheus/redis_config.json
