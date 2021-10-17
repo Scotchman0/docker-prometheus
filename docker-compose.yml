@@ -27,14 +27,24 @@ services:
     - /sys:/sys:ro
     - /var/lib/docker/:/var/lib/docker:ro
 #    - /cgroup:/cgroup:ro #RHEL
-    depends_on:
-    - redis
+#    depends_on:
+#    - redis
     userns_mode: "host"
 #    privileged: true #rhel
-  redis:
-    image: redis:latest
-    container_name: redis_new
-    ports:
-    - 6379:6379
+#  redis:
+#    image: redis:latest
+#    container_name: redis_new
+#    ports:
+#    - 6379:6379
+#    command:
+#    - --config.file=/home/wradmin/prometheus/redis_config.json
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter_new
     command:
-    - --config.file=/home/wradmin/prometheus/redis_config.json
+      - '--path.rootfs=/host'
+    network_mode: host
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - '/:/host:ro,rslave'

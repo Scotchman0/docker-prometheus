@@ -24,8 +24,8 @@ scrape_configs:
       labels:
         alias: 'cadvisor'
  
-  - job_name: 'docker'
+  - job_name: 'node_exporter'
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
     static_configs:
-      - targets: ['localhost:9323']
+      - targets: ['0.0.0.0:9100']
