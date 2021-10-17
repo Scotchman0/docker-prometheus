@@ -11,10 +11,16 @@ Feel free to clone and use in your projects, I'm just tinkering with a better mo
 
 
 ** Copy daemon.json to /etc/docker and then run:
-$ sudo systemctl daemon-reload #to restart the dockerd configs before restarting the service
-$ sudo systemctl restart docker #to restart the service
+- `$ sudo systemctl daemon-reload` #to restart the dockerd configs before restarting the service
+- `$ sudo systemctl restart docker` #to restart the service
 
-To launch the stack, install docker-compose, then run: `$ docker-compose up` in the folder that owns this service
+To launch the stack: (deb/ubuntu)
+1. `$ sudo apt install docker-compose`
+2. `$ docker-compose up` # in the folder that owns this service
+
+To launch the stack: (rhel/fedora) #you may need to modify the docker-compose.yml file to update the permissions for the stack somewhat, but it should still boot the basic pod setup - this will be improved in future versions
+1. `$ sudo yum install podman-compose`
+2. `$ podman-compose up` # in the folder that owns this service
 
 See: https://docs.docker.com/config/daemon/prometheus/ for more information/usage guidance, this is just a version that also includes cadvisor and grafana in the build for ease of access.
 
