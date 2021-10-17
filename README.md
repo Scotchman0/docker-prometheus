@@ -20,3 +20,10 @@ See: https://docs.docker.com/config/daemon/prometheus/ for more information/usag
 
 If it launches correctly you should see:
 "prometheus_new | level=info ts=2021-10-17T02:14:38.433Z caller=main.go:794 msg="Server is ready to receive│" in the output
+
+access the prometheus instance at localhost:30090 (moved from default 9090 since cockpit rides on that port)
+grafana at localhost:3000
+
+Accessing the below values in prometheus is still a work in progress - it doesn't appear to want to scrape correctly, even though the content is available. Working on it.
+raw docker value output at localhost:9323/metrics
+raw node_exporter content/redis at localhost:9100/metrics (depending on build develop/main)
