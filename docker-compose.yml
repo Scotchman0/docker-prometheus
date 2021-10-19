@@ -36,5 +36,3 @@ services:
     container_name: redis_new
     ports:
     - 6379:6379
-    command:
-    - --config.file=/home/wradmin/docker-prometheus/redis_config.json
