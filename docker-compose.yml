@@ -6,9 +6,9 @@ services:
     ports:
     - 30090:9090
     command:
-    - --config.file=/home/wradmin/prometheus/prometheus.yml
+    - --config.file=~/docker-prometheus/prometheus.yml
     volumes:
-    - ./prometheus.yml:/home/wradmin/prometheus/prometheus.yml:ro
+    - ./prometheus.yml:~/docker-prometheus/prometheus.yml:ro
     depends_on:
     - cadvisor
   grafana:
@@ -37,4 +37,4 @@ services:
     ports:
     - 6379:6379
     command:
-    - --config.file=/home/wradmin/prometheus/redis_config.json
+    - --config.file=~/docker-prometheus/redis_config.json
