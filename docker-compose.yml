@@ -36,3 +36,8 @@ services:
     container_name: redis_new
     ports:
     - 6379:6379
+  redis_exporter:
+    image: quay.io/oliver006/redis_exporter:latest
+    container_name: redis_exporter_new
+    ports:
+    - 9121:9121
