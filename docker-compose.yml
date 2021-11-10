@@ -9,6 +9,7 @@ services:
     - --config.file=/home/wradmin/docker-prometheus/prometheus.yml
     volumes:
     - ./prometheus.yml:/home/wradmin/docker-prometheus/prometheus.yml:ro
+    - ./rules.yml:/home/wradmin/docker-prometheus/rules.yml:ro
     depends_on:
     - cadvisor
   grafana:
@@ -41,3 +42,14 @@ services:
     container_name: redis_exporter_new
     ports:
     - 9121:9121
+    command:
+    - --redis.addr=10.1.11.75:6379
+  alertmanager:
+    image: quay.io/prometheus/alertmanager:latest
+    container_name: alertmanager_container
+    ports:
+    - 9093:9093
+    command:
+    - --config.file=/home/wradmin/docker-prometheus/alertmanager.yml
+    volumes:
+    - ./alertmanager.yml:/home/wradmin/docker-prometheus/alertmanager.yml:ro
