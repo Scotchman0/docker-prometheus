@@ -16,7 +16,7 @@ receivers:
 - name: slack
   slack_configs:
   - api_url:
-    channel: test-ali
+    channel: <slack_channel>
     send_resolved: true
 inhibit_rules:
 - source_match:
