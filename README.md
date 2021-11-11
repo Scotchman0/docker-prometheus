@@ -10,7 +10,7 @@ Feel free to clone and use in your projects, I'm just tinkering with a better mo
 ~Scotchman0
 
 
-** Copy daemon.json to /etc/docker and then run:
+** Copy daemon.json to /etc/docker and update the file with your local IP address for the node and then run:
 - `$ sudo systemctl daemon-reload` #to restart the dockerd configs before restarting the service
 - `$ sudo systemctl restart docker` #to restart the service
 
