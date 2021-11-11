@@ -14,6 +14,11 @@ Feel free to clone and use in your projects, I'm just tinkering with a better mo
 - `$ sudo systemctl daemon-reload` #to restart the dockerd configs before restarting the service
 - `$ sudo systemctl restart docker` #to restart the service
 
+Then, update all instances of `HOST_IP` with your local node IP:
+$ sed -i 's/HOST_IP/<your_node_IP>/g' docker_compose.yml
+$ sed -i 's/HOST_IP/<your_node_IP>/g' prometheus.yml
+
+
 To launch the stack: (deb/ubuntu)
 1. `$ sudo apt install docker-compose`
 2. `$ docker-compose up` # in the folder that owns this service
