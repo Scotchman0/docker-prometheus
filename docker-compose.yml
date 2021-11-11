@@ -43,7 +43,7 @@ services:
     ports:
     - 9121:9121
     command:
-    - --redis.addr=10.1.11.75:6379
+    - --redis.addr=HOST_IP:6379
   alertmanager:
     image: quay.io/prometheus/alertmanager:latest
     container_name: alertmanager_container
