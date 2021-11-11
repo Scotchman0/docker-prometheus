@@ -29,7 +29,7 @@ To launch the stack: (rhel/fedora) #you may need to modify the docker-compose.ym
 See: https://docs.docker.com/config/daemon/prometheus/ for more information/usage
 
 If it launches correctly you should see:
-"prometheus_new | level=info ts=2021-10-17T02:14:38.433Z caller=main.go:794 msg="Server is ready to receive│" in the output
+`prometheus_new | level=info ts=<date>T02:14:38.433Z caller=main.go:794 msg="Server is ready to receive│` in the output
 
 # access addresses after spin up:
 - prometheus instance at http://localhost:30090 (moved from default 9090 since cockpit rides on that port)
