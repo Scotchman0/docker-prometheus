@@ -6,9 +6,10 @@ services:
     ports:
     - 30090:9090
     command:
-    - --config.file=/home/wradmin/prometheus/prometheus.yml
+    - --config.file=/home/wradmin/docker-prometheus/prometheus.yml
     volumes:
-    - ./prometheus.yml:/home/wradmin/prometheus/prometheus.yml:ro
+    - ./prometheus.yml:/home/wradmin/docker-prometheus/prometheus.yml:ro
+    - ./rules.yml:/home/wradmin/docker-prometheus/rules.yml:ro
     depends_on:
     - cadvisor
   grafana:
@@ -27,24 +28,28 @@ services:
     - /sys:/sys:ro
     - /var/lib/docker/:/var/lib/docker:ro
 #    - /cgroup:/cgroup:ro #RHEL
-#    depends_on:
-#    - redis
+    depends_on:
+    - redis
     userns_mode: "host"
 #    privileged: true #rhel
-#  redis:
-#    image: redis:latest
-#    container_name: redis_new
-#    ports:
-#    - 6379:6379
-#    command:
-#    - --config.file=/home/wradmin/prometheus/redis_config.json
-  node_exporter:
-    image: quay.io/prometheus/node-exporter:latest
-    container_name: node_exporter_new
+  redis:
+    image: redis:latest
+    container_name: redis_new
+    ports:
+    - 6379:6379
+  redis_exporter:
+    image: quay.io/oliver006/redis_exporter:latest
+    container_name: redis_exporter_new
+    ports:
+    - 9121:9121
     command:
-      - '--path.rootfs=/host'
-    network_mode: host
-    pid: host
-    restart: unless-stopped
+    - --redis.addr=10.1.11.75:6379
+  alertmanager:
+    image: quay.io/prometheus/alertmanager:latest
+    container_name: alertmanager_container
+    ports:
+    - 9093:9093
+    command:
+    - --config.file=/home/wradmin/docker-prometheus/alertmanager.yml
     volumes:
-      - '/:/host:ro,rslave'
+    - ./alertmanager.yml:/home/wradmin/docker-prometheus/alertmanager.yml:ro

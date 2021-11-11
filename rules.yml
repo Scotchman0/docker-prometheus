@@ -1,0 +1,23 @@
+groups:
+  - name: NodeDown
+    rules:
+    - alert: NodeDown
+      expr: up{job="node"} == 0
+      for: 1m
+      labels:
+        severity: "high"
+      annotations:
+        summary: "Node Down:"
+        description: "{{$labels.instance}}: Instance is DOWN"
+        summary_resolved: "Node UP"
+        description_resolved: "{{$labels.instance}}: Instance is UP"
+    - alert: HighTxRate
+      expr: (irate(node_network_transmit_bytes_total[60s]))*8/1000000 > 100
+      for: 10s
+      labels:
+        severity: medium
+      annotations:
+        summary: "High Tx rate on {{$labels.device}} interface:"
+        description: "{{$labels.instance}}: High Tx rate is above 100Mbps (current value is: {{ $value }})"
+        summary_resolved: "Average Tx rate on {{$labels.device}} interface:"
+        description_resolved: "{{$labels.instance}}: Average Tx rate is below 100Mbps"
