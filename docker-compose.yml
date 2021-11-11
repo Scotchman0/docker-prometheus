@@ -6,10 +6,10 @@ services:
     ports:
     - 30090:9090
     command:
-    - --config.file="$PWD"/docker-prometheus/prometheus.yml
+    - --config.file=$PWD/docker-prometheus/prometheus.yml
     volumes:
-    - ./prometheus.yml:"$PWD"/docker-prometheus/prometheus.yml:ro
-    - ./rules.yml:"$PWD"/docker-prometheus/rules.yml:ro
+    - ./prometheus.yml:$PWD/docker-prometheus/prometheus.yml:ro
+    - ./rules.yml:$PWD/docker-prometheus/rules.yml:ro
     depends_on:
     - cadvisor
   grafana:
@@ -50,6 +50,6 @@ services:
     ports:
     - 9093:9093
     command:
-    - --config.file="$PWD"/docker-prometheus/alertmanager.yml
+    - --config.file=$PWD/docker-prometheus/alertmanager.yml
     volumes:
-    - ./alertmanager.yml:"$PWD"/docker-prometheus/alertmanager.yml:ro
+    - ./alertmanager.yml:$PWD/docker-prometheus/alertmanager.yml:ro
