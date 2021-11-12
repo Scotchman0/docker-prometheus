@@ -1,4 +1,4 @@
 {
-  "metrics-addr" : "<your_node_IP>:9323",
+  "metrics-addr" : "HOST_IP:9323",
   "experimental" : true
 }
