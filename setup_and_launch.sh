@@ -11,7 +11,7 @@
 if dpkg -l | grep docker-compose;
 then echo "docker-compose already installed, skipping"
 else sudo apt install docker-compose
-
+fi
 
 echo "Please set the HOST_IP"
 echo "insert your localhost IP address <example: 192.168.0.2> and press return"
@@ -47,5 +47,3 @@ case $option in
     *) echo "non y/n answer recieved, exiting"
       ;;
     esac
-
-exit 0
