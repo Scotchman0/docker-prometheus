@@ -18,7 +18,7 @@ echo "insert your localhost IP address <example: 192.168.0.2> and press return"
 echo ""
 read NEW_HOST_IP
 
-sed -i 's/HOST_IP/NEW_HOST_IP/g' ./docker_compose.yml
+sed -i 's/HOST_IP/NEW_HOST_IP/g' ./docker-compose.yml
 sed -i 's/HOST_IP/NEW_HOST_IP/g' ./prometheus.yml
 sed -i 's/HOST_IP/NEW_HOST_IP/g' ./daemon.json
 
