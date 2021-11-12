@@ -35,15 +35,16 @@ case $option in
       ;;
     *) echo "non y/n answer recieved, defaulting to no change"
       ;;
-    esac
+esac
 
 echo "would you like to launch the stack now? (y/n)"
-case $option in
+read option2
+case $option2 in
     y|Y) echo "starting stack - press ctrl + c to stop the build"
-        docker-compose up &
+        docker-compose up
       ;;
     n|N) echo "install completed - you may start the stack with 'docker-compose up' in this folder."
       ;;
     *) echo "non y/n answer recieved, exiting"
       ;;
-    esac
+esac
