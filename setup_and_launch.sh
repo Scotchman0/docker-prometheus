@@ -22,7 +22,8 @@ sed -i 's/HOST_IP/$NEW_HOST_IP/g' ./docker-compose.yml
 sed -i 's/HOST_IP/$NEW_HOST_IP/g' ./prometheus.yml
 sed -i 's/HOST_IP/$NEW_HOST_IP/g' ./daemon.json
 
-sudo cp daemon.json /etc/docker/
+mv daemon.json /etc/docker/daemon.json.bak
+cp daemon.json /etc/docker/
 
 echo "docker restart needs to occur in order to update the metrics export"
 echo "continue to restart docker service with systemctl? (y/n)"
