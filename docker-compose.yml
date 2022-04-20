@@ -2,14 +2,15 @@ version: '3.2'
 services:
   prometheus:
     image: prom/prometheus:latest
+    user: "$whoami:root"
     container_name: prometheus_new
     ports:
     - 30090:9090
     command:
-    - --config.file=$PWD/docker-prometheus/prometheus.yml
+    - --config.file=$PWD/prometheus.yml
     volumes:
-    - ./prometheus.yml:$PWD/docker-prometheus/prometheus.yml:ro
-    - ./rules.yml:$PWD/docker-prometheus/rules.yml:ro
+    - ./prometheus.yml:$PWD/prometheus.yml:ro
+    - ./rules.yml:$PWD/rules.yml:ro
     depends_on:
     - cadvisor
   grafana:
