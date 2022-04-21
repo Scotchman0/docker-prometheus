@@ -70,7 +70,7 @@ services:
     ports:
     - 9121:9121
     command:
-    - --redis.addr=<your_node_IP>:6379
+    - --redis.addr=HOST_IP:6379
 
 
   alertmanager:
