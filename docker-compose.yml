@@ -2,25 +2,47 @@ version: '3.2'
 services:
   prometheus:
     image: prom/prometheus:latest
-    user: "$whoami:root"
+    restart: unless-stopped
     container_name: prometheus_new
     ports:
     - 30090:9090
     command:
     - --config.file=$PWD/prometheus.yml
+    - --alertmanager.url=http://alertmanager:9093
+    - --storage.local.path=/prometheus-data
     volumes:
     - ./prometheus.yml:$PWD/prometheus.yml:ro
     - ./rules.yml:$PWD/rules.yml:ro
+    links:
+    - cadvisor:cadvisor
+    - node-exporter:node-exporter
     depends_on:
     - cadvisor
+  
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node_exporter_new
+    restart: unless-stopped
+    expose:
+      - 9100
+
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:latest
     container_name: grafana_new
+    restart: unless-stopped
+    links:
+    - prometheus_new:prometheus_new
     ports:
     - 3000:3000
+    environment:
+    - GF_SECURITY_ADMIN_PASSWORD=SECUREPASS
+  
+
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor_new
+    restart: unless-stopped
     ports:
     - 8081:8080
     volumes:
@@ -33,18 +55,24 @@ services:
     - redis
     userns_mode: "host"
 #    privileged: true #rhel
+  
+
   redis:
     image: redis:latest
     container_name: redis_new
     ports:
     - 6379:6379
+  
+
   redis_exporter:
     image: quay.io/oliver006/redis_exporter:latest
     container_name: redis_exporter_new
     ports:
     - 9121:9121
     command:
-    - --redis.addr=HOST_IP:6379
+    - --redis.addr=<your_node_IP>:6379
+
+
   alertmanager:
     image: quay.io/prometheus/alertmanager:latest
     container_name: alertmanager_container
